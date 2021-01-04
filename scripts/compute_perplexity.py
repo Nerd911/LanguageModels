@@ -7,10 +7,10 @@ flags.DEFINE_string('input', None, 'Input sentences.')
 
 def main(argv):
     del argv
-    with open(flags.input, 'r') as file:
+    with open(FLAGS.input, 'r') as file:
         data = file.read().replace('\n', '</s>')
 
-    model=kenlm.Model(flags.model) 
+    model=kenlm.Model(FLAGS.model) 
     per=model.perplexity(data)
 
     print(per)
