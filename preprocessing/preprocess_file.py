@@ -83,7 +83,7 @@ def get_prefix_suffix_word(word):
     prefix = get_prefix_word(word)
     if prefix[:3] == "iWj":
         return prefix
-    return prefix + get_suffix(word)
+    return prefix + get_suffix_word(word)
 
 def get_supertag(word, k = 5):
     word_lower = word.lower()
@@ -91,7 +91,7 @@ def get_supertag(word, k = 5):
         return "iWj"+word
     if word_lower in supertags:
         return "iTj"+supertags[word_lower]
-    return get_suffix(k, word)
+    return get_suffix(word, k)
 
 def get_basis(word):
     word_lower = word.lower()
