@@ -145,8 +145,8 @@ def main(argv):
 
     methods = [get_method(identifier) for identifier in FLAGS.features]
 
-    with open(FILE.input, "r") as ifile:
-        with open(FILE.output, "w") as ofile:
+    with open(FLAGS.input, "r") as ifile:
+        with open(FLAGS.output, "w") as ofile:
             for line in ifile:
                 line = line if line[-1] != "\n" else line[:-1]
                 res = [apply_methods(w, methods = methods) for w in line.split(" ")]
