@@ -76,7 +76,7 @@ def get_prefix_word(word):
     n = len(word)
     for k in range(n):
         if word_lower[:-k] in prefixes:
-            return "iPj"+word[k:]
+            return "iPj"+word[:-k]
     return "iPj"
 
 def get_prefix_suffix_word(word):
