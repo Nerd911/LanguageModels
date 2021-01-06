@@ -50,10 +50,10 @@ def load_superbases(path):
     global superbases
     _load_dict(path, superbases)
 
-def get_prefix(k, word):
+def get_prefix(word, k):
     return f"iP{k}j{word[:k]}"
 
-def get_suffix(k, word):
+def get_suffix(word, k):
     return f"iS{k}j{word[-k:]}"
 
 def get_word(word):
