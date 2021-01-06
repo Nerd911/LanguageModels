@@ -51,10 +51,10 @@ def load_superbases(path):
     _load_dict(path, superbases)
 
 def get_prefix(word, k):
-    return f"iP{k}j{word[:k]}"
+    return f"iPj{word[:k]}"
 
 def get_suffix(word, k):
-    return f"iS{k}j{word[-k:]}"
+    return f"iSj{word[-k:]}"
 
 def get_word(word):
     return "iWj"+word
@@ -141,7 +141,7 @@ def main(argv):
         load_supertags(FLAGS.supertags)
 
     if FLAGS.bases:
-        load_supertags(FLAGS.bases)
+        load_superbases(FLAGS.bases)
 
     methods = [get_method(identifier) for identifier in FLAGS.features]
 
