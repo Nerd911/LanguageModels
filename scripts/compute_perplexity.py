@@ -26,18 +26,17 @@ def main(argv):
             transformed_words = ["<s>"] + transformed_words + ["</s>"]
             full_words = [apply_methods(w, [transform_method, get_word]) for w in words]
             for i, (prob, length, oov) in enumerate(model1.full_scores(transformed_line)):
-                N+=1
                 bigram = transformed_words[i+2-length:i+2]
                 if len(bigram) < 2:
                     if bigram[0] == "<s>":
                         res += prob
+                        N+=1
                     continue
+                N+=1
                 res += prob
-                print(f"bigram: {bigram}")
                 if bigram[-1] == "</s>" or oov:
                     continue
                 full_word = full_words[i]
-                print(f"full_word: {full_word}")
                 full_scores = model2.full_scores(full_word)
                 res += list(full_scores)[1][0]
     
