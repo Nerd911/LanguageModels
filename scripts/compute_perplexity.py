@@ -1,6 +1,7 @@
 from lib.word_transform import apply_methods, get_method, get_word
 import kenlm
 from absl import flags, app
+import string
 
 FLAGS = flags.FLAGS
 flags.DEFINE_string('model1', None, 'Model path.')
@@ -20,7 +21,7 @@ def main(argv):
     transform_method = get_method(FLAGS.identifier)
     with open(FLAGS.test_file, "r") as ifile:
         for line in ifile:
-            words = line.split(" ")
+            words = line[:-1].split(" ")
             transformed_words = [apply_methods(w, [transform_method]) for w in words]
             transformed_line = " ".join(transformed_words)
             transformed_words = ["<s>"] + transformed_words + ["</s>"]
@@ -34,7 +35,7 @@ def main(argv):
                     continue
                 N+=1
                 res += prob
-                if bigram[-1] == "</s>" or oov:
+                if bigram[-1] == "</s>" or oov or bigram[-1] in string.punctuation:
                     continue
                 full_word = full_words[i]
                 full_scores = model2.full_scores(full_word)
