@@ -21,16 +21,20 @@ def main(argv):
     with open(FLAGS.test_file, "r") as ifile:
         for line in ifile:
             words = line.split(" ")
-            transformed_words = [transform_method(w) for w in words]
+            transformed_words = [apply_methods(w, [transform_method]) for w in words]
             transformed_line = " ".join(transformed_words)
             transformed_words = ["<s>"] + transformed_words + ["</s>"]
             full_words = [apply_methods(w, [transform_method, get_word]) for w in words]
             for i, (prob, length, oov) in enumerate(model1.full_scores(transformed_line)):
                 N+=1
                 bigram = transformed_words[i+2-length:i+2]
+                if len(bigram) < 2:
+                    if bigram[0] == "<s>":
+                        res += prob
+                    continue
                 res += prob
                 print(f"bigram: {bigram}")
-                if bigram[-1] == "<\s>" or oov:
+                if bigram[-1] == "</s>" or oov:
                     continue
                 full_word = full_words[i]
                 print(f"full_word: {full_word}")
