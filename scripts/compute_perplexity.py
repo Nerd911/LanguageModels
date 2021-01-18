@@ -35,7 +35,7 @@ def main(argv):
                 full_word = full_words[i]
                 print(f"full_word: {full_word}")
                 full_scores = model2.full_scores(full_word)
-                res += full_scores[1][0]
+                res += list(full_scores)[1][0]
     
     print(f"Perplexity: {10**(res/N)}")
 
