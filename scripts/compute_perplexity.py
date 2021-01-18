@@ -28,9 +28,9 @@ def main(argv):
             for i, (prob, length, oov) in enumerate(model1.full_scores(transformed_line)):
                 bigram = transformed_words[i+2-length:i+2]
                 if len(bigram) < 2:
-                    if bigram[0] == "<s>":
-                        res += prob
-                        N+=1
+                    # if bigram[0] == "<s>":
+                    #     res += prob
+                    #     N+=1
                     continue
                 N+=1
                 res += prob
@@ -40,7 +40,7 @@ def main(argv):
                 full_scores = model2.full_scores(full_word)
                 res += list(full_scores)[1][0]
     
-    print(f"Perplexity: {10**(res/N)}")
+    print(f"Perplexity: {10**(-res/N)}")
 
 
 if __name__ == "__main__":
