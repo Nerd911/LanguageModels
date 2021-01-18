@@ -33,13 +33,13 @@ def main(argv):
                 #     #     res += prob
                 #     #     N+=1
                 #     continue
-                print(f"Bigram {i}: {bigram}")
+                # print(f"Bigram {i}: {bigram}")
                 N+=1
                 res += prob
                 if bigram[-1] == "</s>" or oov or bigram[-1] in string.punctuation:
                     continue
                 full_word = full_words[i]
-                print(f"Fullword {i}: {full_word}")
+                # print(f"Fullword {i}: {full_word}")
                 full_scores = model2.full_scores(full_word)
                 res += list(full_scores)[1][0]
     
