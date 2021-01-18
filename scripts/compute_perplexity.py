@@ -29,9 +29,11 @@ def main(argv):
                 N+=1
                 bigram = transformed_words[i+2-length:i+2]
                 res += prob
+                print(f"bigram: {bigram}")
                 if bigram[-1] == "<\s>" or oov:
                     continue
                 full_word = full_words[i]
+                print(f"full_word: {full_word}")
                 full_scores = model2.full_scores(full_word)
                 res += full_scores[1][0]
     
