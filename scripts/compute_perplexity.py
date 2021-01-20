@@ -43,7 +43,7 @@ def main(argv):
                 full_scores = model2.full_scores(full_word)
                 res += list(full_scores)[1][0]
     
-    print(f"Perplexity: {10**(-res/N)}")
+    print(f"Perplexity {FLAGS.model1} FLAGS.model1 {FLAGS.model2}: {10**(-res/N)}")
 
 
 if __name__ == "__main__":
